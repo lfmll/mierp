@@ -72,7 +72,7 @@ class EmpresaController extends Controller
             }
             DB::commit();
         }catch(\Exception $e){
-            BD::rollback();
+            DB::rollback();
         }
     }
 

@@ -21,24 +21,25 @@
 			<div class="col-lg-3 col-md-3 col-xs-12">
 				<div class="form-group">
 					{{Form::label('title','nombre')}}
-					{{Form::text('nombre_agencia')}}
+					
+					<input class="form-control" type="text" name="nombre_agencia" id="nombre_agencia">
 				</div>
 			</div>
 			<div class="col-lg-3 col-md-3 col-xs-12">
 				<div class="form-group">
 					{{Form::label('title','direccion')}}
-					{{Form::text('direccion')}}
+					<input class="form-control" type="text" name="direccion" id="direccion" value="hola" >
 				</div>
 			</div>
 			<div class="col-lg-3 col-md-3 col-xs-12">	
 				<div class="form-group">
 					{{Form::label('title','telefono')}}
-					{{Form::text('telefono')}}
+					<input class="form-control" type="text" name="telefono" id="telefono">
 				</div>
 			</div>
 			<div class="col-lg-3 col-sm-3 col-md-2 col-xs-12">
                 <div class="form-group">
-                    <button type="button" id="btn_add" class="btn btn-primary">Agregar</button>
+                    <button type="button" name="btn_add" id="btn_add" class="btn btn-primary">Agregar</button>
                     
 				</div>
 			</div>
@@ -51,7 +52,7 @@
     <div class="panel panel-primary">
         <div class="panel panel-body">
             <div class="col-lg-12 col-sm-12 col-xs-12">
-                <table id="detalles" class="table table-striped table-bordered table-condensed table-hover">
+                <table id="detalles" name="detalles" class="table table-striped table-bordered table-condensed table-hover">
                     <thead style="background-color: #2ab27b">
                         <th>Opciones</th>
                         <th>Nombre</th>
@@ -81,12 +82,13 @@
     </div>
 </div>
 {!!Form::close()!!}
-@push ('scripts')
+@push('scripts')
 <script>
     $(document).ready(function(){
-        $('#btn_add').onClick(function(){
-            alert("dfdfd");
-           agregar(); 
+        $('#btn_add').onClick(function(){            
+           //agregar(); 
+           alert('hola');
+           limpiar();
         });
     });
     var cont=0;
@@ -101,7 +103,7 @@
         if (nombre_agencia!="" && direccion!="" && telefono!="") {
             
             
-            var fila='<tr class="selectd" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td><td><input type="hidden" name="nombre_agencia[]" value="'+nombre_agencia+'"></td><td><input type="text" name="direccion[]" value="'+direccion+'"></td><td><input type="text" name="telefono[]" value="'+telefono+'"></td></tr>';
+            var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td><td><input type="text" name="nombre_agencia[]" value="'+nombre_agencia+'"></td><td><input type="text" name="direccion[]" value="'+direccion+'"></td><td><input type="text" name="telefono[]" value="'+telefono+'"></td></tr>';
             cont++;
             limpiar();
             
@@ -113,6 +115,7 @@
     }
 
     function limpiar(){
+
         $(#nombre_agencia).val("");
         $(#direccion).val("");
         $(#telefono).val("");
